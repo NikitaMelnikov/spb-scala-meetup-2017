@@ -1,0 +1,28 @@
+version: '2'
+services:
+  publisher:
+    image: "ru.tinkoff/spbscalameetup2017-1"
+    shm_size: 2G
+    links: ["subscriber"]
+    environment:
+      HOSTNAME: publisher
+      PORT: 25520
+      BIND_HOSTNAME: 0.0.0.0
+      BIND_PORT: 25520
+      MODE: artery
+      ROLE: publisher
+      SMALL_MESSAGES_SIZE: 100
+      SMALL_MESSAGES_COUNT: 50000
+      LARGE_MESSAGES_SIZE: 10000
+      LARGE_MESSAGES_COUNT: 1000
+
+  subscriber:
+    image: "ru.tinkoff/spbscalameetup2017-1"
+    shm_size: 2G
+    environment:
+      MODE: artery
+      ROLE: subscriber
+      HOSTNAME: 172.18.0.2
+      PORT: 25520
+      BIND_HOSTNAME: 172.18.0.2
+      BIND_PORT: 25520
