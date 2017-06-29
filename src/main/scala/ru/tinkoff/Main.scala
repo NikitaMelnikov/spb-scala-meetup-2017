@@ -35,11 +35,13 @@ object Main {
             |   bind.port = ${System.getenv("BIND_HOSTNAME")}
             |
             |   advanced.outbound-message-queue-size = 4096
-            | }
+            |   advanced.flight-recorder.enabled = true
+            |   advanced.idle-cpu-level = 10
             |
-            | akka.remote.artery.large-message-destinations = [
-            |   "/user/subscriberLarge"
-            | ]
+            |   large-message-destinations = [
+            |     "/user/subscriberLarge"
+            |   ]
+            | }
           """.stripMargin)
 
       case ApplicationModes.Netty =>
